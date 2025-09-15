@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +7,6 @@ import time
 import route_info
 import routes_csv
 
-    
 def scrape_route(url):
     driver = set_up_scrape() 
     driver.get(url)
@@ -92,7 +90,7 @@ def set_up_scrape():
 def get_fa(route):
     what = route.find_element(By.CLASS_NAME, "fa__what").text
     who = route.find_element(By.CLASS_NAME, "fa__who").text
-    when = route.find_element(By.CLASS_NAME, "fa__when").text
+    when = route.find_element(By.CLASS_NAME, "fa_when").text
     fa_obj = route_info.FAInfo(what, who, when)
     return fa_obj
 
