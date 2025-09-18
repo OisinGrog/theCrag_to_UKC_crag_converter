@@ -10,8 +10,8 @@ import routes_csv
 
 def scrape_route(url):
     driver = set_up_scrape() 
-    driver.get(url)
-    time.sleep(5)  # Wait for the page to load completely
+    driver.get(url) # page wont load anymore, theyve figured us out
+    time.sleep(10)  # Wait for the page to load completely
 
     scraped_routes = driver.find_elements(By.CLASS_NAME, "route")
     routes = []
@@ -77,11 +77,11 @@ def scrape_route(url):
 def set_up_scrape():
     options = webdriver.ChromeOptions()
     
-    options.add_argument("--headless")  # Run in headless mode
+    # options.add_argument("--headless")  # Run in headless mode
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
     options.add_argument("--log-level=3")  # Suppress logs
-    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36")
+    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36")
 
     service = Service(ChromeDriverManager().install())
 
@@ -92,11 +92,9 @@ def get_fa(route):
     fas = route.find_elements(By.CLASS_NAME, "fa")
 
     for element in fas:
-        this_what = element.find_element(By.CLASS_NAME, "fa__what").text
-        stuff = element.get_attribute("innerHTML")
+        this_what = element.find_element(By.CLASS_NAME, "fa__what").tex
         if this_what == "FA:":
             what = this_what
-            # Only gets the first persons name if multiple, NEEDS FIXED 
             who = element.find_element(By.CLASS_NAME, "fa__who").text
             when = element.find_element(By.CLASS_NAME, "fa_when").text
             break
