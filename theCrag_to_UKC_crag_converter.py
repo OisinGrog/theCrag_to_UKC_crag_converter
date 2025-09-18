@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.chrome.service import Service
@@ -88,9 +89,18 @@ def set_up_scrape():
     return driver
 
 def get_fa(route):
-    what = route.find_element(By.CLASS_NAME, "fa__what").text
-    who = route.find_element(By.CLASS_NAME, "fa__who").text
-    when = route.find_element(By.CLASS_NAME, "fa_when").text
+    fas = route.find_elements(By.CLASS_NAME, "fa")
+
+    for element in fas:
+        this_what = element.find_element(By.CLASS_NAME, "fa__what").text
+        stuff = element.get_attribute("innerHTML")
+        if this_what == "FA:":
+            what = this_what
+            # Only gets the first persons name if multiple, NEEDS FIXED 
+            who = element.find_element(By.CLASS_NAME, "fa__who").text
+            when = element.find_element(By.CLASS_NAME, "fa_when").text
+            break
+    
     fa_obj = route_info.FAInfo(what, who, when)
     return fa_obj
 
@@ -98,4 +108,4 @@ if __name__ == "__main__":
     #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11374129023"
     url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11373956388"
     scrape_route(url)
-    
+
