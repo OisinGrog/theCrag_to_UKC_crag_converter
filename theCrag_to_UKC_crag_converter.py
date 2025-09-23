@@ -38,6 +38,7 @@ def scrape_route(url):
 
         try:
             height = route.find_element(By.CLASS_NAME, "attr").text
+            height = height.split(',')[0].strip() # Get only the height part before any comma
         except exceptions.NoSuchElementException:
             print("No height found, skipping...")
 
@@ -46,6 +47,7 @@ def scrape_route(url):
         except exceptions.NoSuchElementException:
             print("No description found, skipping...")
             
+        # Bolts also in mixed routes, look into adding this
         if climb_type == "Sport":
             try:
                 bolts = route.find_element(By.CLASS_NAME, "bolts").text
