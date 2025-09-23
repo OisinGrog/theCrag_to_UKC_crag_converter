@@ -1,5 +1,6 @@
 Handle FFA vs FA stuff, FA = priority 1, FFA = priority 2
 Bolts also in mixed trad routes, handle this
+Add more unit tests
 
 Done:
 Add star count (it is a requirement of UKC)
