@@ -44,6 +44,7 @@ def scrape_route(url):
 
         try:
             description = route.find_element(By.CSS_SELECTOR, "div.markdown.desc").text
+            description = description.split('\n')[0]  # Get only the first paragraph
         except exceptions.NoSuchElementException:
             print("No description found, skipping...")
             
