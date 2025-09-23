@@ -27,7 +27,7 @@ def scrape_route(url):
             continue
 
         try:
-            climb_type = route.find_element(By.CSS_SELECTOR, "span.tags.sport").text
+            climb_type = route.find_element(By.CSS_SELECTOR, "span.tags").text
         except exceptions.NoSuchElementException:
             print("No climb type found, skipping...")
 
@@ -71,6 +71,7 @@ def scrape_route(url):
         )
 
         routes.append(route_obj)
+        print("Added route: ", route_name)
 
     routes_csv.write_to_csv(routes, "scraped_routes.csv")
     
