@@ -1,0 +1,2 @@
+Add star count (it is a requirement of UKC)
+Handle FFA vs FA stuff, FA = priority 1, FFA = priority 2
