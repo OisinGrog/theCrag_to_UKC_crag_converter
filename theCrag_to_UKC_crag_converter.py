@@ -36,6 +36,9 @@ def scrape_route(url):
         except exceptions.NoSuchElementException:
             print("No grade found, skipping...")
 
+        # No need to throw an error if no stars are found, just set to 0
+        stars = len(route.find_elements(By.CLASS_NAME, "star"))
+
         try:
             height = route.find_element(By.CLASS_NAME, "attr").text
             height = height.split(',')[0].strip() # Get only the height part before any comma
@@ -65,6 +68,7 @@ def scrape_route(url):
             name=route_name,
             climb_type=climb_type,
             grade=grade,
+            stars=stars,
             height=height,
             description=description,
             bolts=bolts,

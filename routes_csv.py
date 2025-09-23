@@ -5,7 +5,7 @@ def write_to_csv(routes_data, filename):
 
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file)
-        field = ['Route Name', 'Climb Type', 'Grade', 'Height', 'Description', 'Bolts', 'FA']
+        field = ['Route Name', 'Climb Type', 'Grade', 'Stars', 'Height', 'Description', 'Bolts', 'FA']
 
         writer.writerow(field)  # Write the header
         
@@ -14,6 +14,7 @@ def write_to_csv(routes_data, filename):
                 route.name,
                 route.climb_type,
                 route.grade,
+                route.stars,
                 route.height,
                 route.description,
                 route.bolts if route.bolts is not None else 'N/A',
