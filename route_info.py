@@ -7,7 +7,7 @@ class Route:
         self.height = height
         self.description = description
         self.bolts = bolts
-        self.fa = FAInfo(*fa) if fa else None
+        self.fa = fa
 
     def __str__(self):
         return f"Route(name={self.name}, type={self.climb_type}, grade={self.grade}, height={self.height}, description={self.description}, bolts={self.bolts})"

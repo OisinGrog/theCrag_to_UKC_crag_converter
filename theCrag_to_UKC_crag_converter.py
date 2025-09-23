@@ -77,7 +77,7 @@ def scrape_route(url):
 def set_up_scrape():
     options = webdriver.ChromeOptions()
     
-    # options.add_argument("--headless")  # Run in headless mode
+    options.add_argument("--headless")  # Run in headless mode
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
     options.add_argument("--log-level=3")  # Suppress logs
@@ -92,15 +92,15 @@ def get_fa(route):
     fas = route.find_elements(By.CLASS_NAME, "fa")
 
     for element in fas:
-        this_what = element.find_element(By.CLASS_NAME, "fa__what").tex
+        this_what = element.find_element(By.CLASS_NAME, "fa__what").text
         if this_what == "FA:":
             what = this_what
             who = element.find_element(By.CLASS_NAME, "fa__who").text
             when = element.find_element(By.CLASS_NAME, "fa_when").text
-            break
-    
-    fa_obj = route_info.FAInfo(what, who, when)
-    return fa_obj
+            
+            fa_obj = route_info.FAInfo(what, who, when)
+            return fa_obj
+    return None
 
 if __name__ == "__main__":
     #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11374129023"
