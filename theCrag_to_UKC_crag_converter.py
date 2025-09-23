@@ -48,7 +48,7 @@ def scrape_route(url):
             
         if climb_type == "Sport":
             try:
-                bolts = route.find_element(By.CLASS_NAME, "clip").text
+                bolts = route.find_element(By.CLASS_NAME, "bolts").text
             except exceptions.NoSuchElementException:
                 print("No bolts found, skipping...")
 
