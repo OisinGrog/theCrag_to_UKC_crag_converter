@@ -17,6 +17,6 @@ def write_to_csv(routes_data, filename):
                 route.height,
                 route.description,
                 route.bolts if route.bolts is not None else 'N/A',
-                route.fa.what + ' ' + route.fa.who + ' ' + route.fa.when if route.fa else 'N/A'
+                route.fa.what + ' ' + route.fa.who + ', ' + route.fa.when if route.fa else 'N/A'
             ])
     

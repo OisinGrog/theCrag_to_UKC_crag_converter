@@ -10,7 +10,7 @@ import routes_csv
 
 def scrape_route(url):
     driver = set_up_scrape() 
-    driver.get(url) # page wont load anymore, theyve figured us out
+    driver.get(url) 
     time.sleep(10)  # Wait for the page to load completely
 
     scraped_routes = driver.find_elements(By.CLASS_NAME, "route")
@@ -51,8 +51,6 @@ def scrape_route(url):
                 bolts = route.find_element(By.CLASS_NAME, "clip").text
             except exceptions.NoSuchElementException:
                 print("No bolts found, skipping...")
-        else:
-            bolts = 0
 
         try:
             fa = get_fa(route)
@@ -92,6 +90,8 @@ def set_up_scrape():
 def get_fa(route):
     fas = route.find_elements(By.CLASS_NAME, "fa")
 
+    # Currently only gets the FA, not FFA. So if only FFA is present, it will return None
+    # Need to fix this to take FA as first priority, then FFA if FA is not present
     for element in fas:
         this_what = element.find_element(By.CLASS_NAME, "fa__what").text
         if this_what == "FA:":
