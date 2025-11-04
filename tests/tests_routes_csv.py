@@ -10,6 +10,7 @@ class TestRoutesCSV(unittest.TestCase):
             name="Test Route",
             climb_type="Sport",
             grade="6a",
+            stars=2,
             height="20m",
             description="A challenging sport route.",
             bolts=5
@@ -29,6 +30,7 @@ class TestRoutesCSV(unittest.TestCase):
         self.assertIn("Test Route", content[1])
         self.assertIn("Sport", content[1])
         self.assertIn("6a", content[1])
+        self.assertIn("2", content[1])
         self.assertIn("20m", content[1])
         self.assertIn("A challenging sport route.", content[1])
         self.assertIn("5", content[1])
