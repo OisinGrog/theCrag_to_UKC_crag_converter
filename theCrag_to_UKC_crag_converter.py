@@ -96,22 +96,37 @@ def set_up_scrape():
 
 def get_fa(route):
     fas = route.find_elements(By.CLASS_NAME, "fa")
+    fa_obj = route_info.FAInfo(None, None, None)
 
-    # Currently only gets the FA, not FFA. So if only FFA is present, it will return None
-    # Need to fix this to take FA as first priority, then FFA if FA is not present
     for element in fas:
         this_what = element.find_element(By.CLASS_NAME, "fa__what").text
-        if this_what == "FA:":
+        
+        # Default FA info is the first entry in the list
+        what = this_what
+        who = element.find_element(By.CLASS_NAME, "fa__who").text
+        when = element.find_element(By.CLASS_NAME, "fa_when").text
+
+        # 2nd priority is FFA
+        if this_what == "FFA:":
             what = this_what
             who = element.find_element(By.CLASS_NAME, "fa__who").text
             when = element.find_element(By.CLASS_NAME, "fa_when").text
-            
-            fa_obj = route_info.FAInfo(what, who, when)
-            return fa_obj
-    return None
+        
+        # 1st priority is FA
+        elif this_what == "FA:":
+            what = this_what
+            who = element.find_element(By.CLASS_NAME, "fa__who").text
+            when = element.find_element(By.CLASS_NAME, "fa_when").text
+
+        fa_obj = route_info.FAInfo(what, who, when)
+    
+    if fa_obj.what is None:
+        return None
+    return fa_obj
 
 if __name__ == "__main__":
     #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11374129023"
-    url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11373956388"
+    #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11373956388"
+    url = "https://www.thecrag.com/en/climbing/australia/blue-mountains/ikara-head"
     scrape_route(url)
 
