@@ -1,6 +1,8 @@
-Handle FFA vs FA stuff, FA = priority 1, FFA = priority 2
-Bolts also in mixed trad routes, handle this
 Add more unit tests
+Handle multi pitching and collecting number of pitches
+Need to handle pitches in description
 
 Done:
 Add star count (it is a requirement of UKC)
+Bolts also in mixed trad routes, handle this
+Handle FFA vs FA stuff, FA = priority 1, FFA = priority 2
