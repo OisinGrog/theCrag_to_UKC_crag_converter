@@ -52,7 +52,7 @@ def scrape_route(url):
             print("No description found, skipping...")
             
         # Bolts also in mixed routes, look into adding this
-        if climb_type == "Sport":
+        if climb_type == "Sport" or climb_type == "Mixed trad":
             try:
                 bolts = route.find_element(By.CLASS_NAME, "bolts").text
             except exceptions.NoSuchElementException:
