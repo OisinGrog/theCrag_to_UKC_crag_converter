@@ -45,6 +45,7 @@ def scrape_route(url):
         except exceptions.NoSuchElementException:
             print("No height found, skipping...")
 
+        # Could be interesting to use chatgpt to alter the description to avoid plagerism
         try:
             description = route.find_element(By.CSS_SELECTOR, "div.markdown.desc").text
             description = description.split('\n')[0]  # Get only the first paragraph
@@ -62,6 +63,13 @@ def scrape_route(url):
             fa = get_fa(route)
         except exceptions.NoSuchElementException:
             print("No FA info found, skipping...")
+ 
+        try:
+            attr = route.find_element(By.CLASS_NAME, "attr")
+            pitches = attr.find_element(By.CSS_SELECTOR, ".title [title]").text
+        except exceptions.NoSuchElementException:
+            print("No pitches found, skipping...")
+        
             
         
         route_obj = route_info.Route(
@@ -70,6 +78,7 @@ def scrape_route(url):
             grade=grade,
             stars=stars,
             height=height,
+            pitches=pitches,
             description=description,
             bolts=bolts,
             fa=fa

@@ -1,11 +1,12 @@
 
 class Route:
-    def __init__(self, name, climb_type, grade, stars, height=None, description=None, bolts=None, fa=None):
+    def __init__(self, name, climb_type, grade, stars, height=None, pitches=None, description=None, bolts=None, fa=None):
         self.name = name
         self.climb_type = climb_type
         self.grade = grade
         self.stars = stars
         self.height = height
+        self.pitches = pitches
         self.description = description
         self.bolts = bolts
         self.fa = fa
