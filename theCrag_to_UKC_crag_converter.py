@@ -88,7 +88,7 @@ def scrape_route(url):
         routes.append(route_obj)
         print("Added route: ", route_name)
 
-    routes_csv.write_to_csv(routes, "scraped_routes.csv")
+    return routes
     
 def set_up_scrape():
     options = webdriver.ChromeOptions()
@@ -138,5 +138,5 @@ if __name__ == "__main__":
     #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11374129023"
     #url = "https://www.thecrag.com/en/climbing/australia/wollongong/area/11373956388"
     url = "https://www.thecrag.com/en/climbing/australia/blue-mountains/ikara-head"
-    scrape_route(url)
+    routes_csv.write_to_csv(scrape_route(url), "scraped_routes.csv")
 
