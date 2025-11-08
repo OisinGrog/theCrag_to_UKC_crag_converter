@@ -13,7 +13,7 @@ def scrape_route(url):
     driver.get(url) 
     time.sleep(10)  # Wait for the page to load completely
 
-    scraped_routes = driver.find_elements(By.CLASS_NAME, "route")
+    scraped_routes = driver.find_elements(By.CSS_SELECTOR, ".route[data-route-tick]")
     routes = []
     
     for route in scraped_routes:
