@@ -22,13 +22,13 @@ class TestRoutesCSV(unittest.TestCase):
         self.assertIsNone(test_route.pitches)
 
     def test_get_fa(self):
-        routes = get_local_test_routes()
-        fa_info = converter.get_fa(routes[3])
+        routes = converter.scrape_route(local_site)
+        test_route = routes[0]
         
-        self.assertEqual(fa_info.what, "FA:")
-        self.assertEqual(fa_info.who, "Jack Schyvens & Daniel Butler")
-        self.assertEqual(fa_info.when, "22 Jul 2017")
-
+        self.assertEqual(test_route.fa.what, "FA:")
+        self.assertEqual(test_route.fa.who, "Jack Schyvens & Daniel Butler")
+        self.assertEqual(test_route.fa.when, "22 Jul 2017")
+    
 if __name__ == "__main__":
     unittest.main()
 
