@@ -11,7 +11,7 @@ import routes_csv
 def scrape_route(url):
     driver = set_up_scrape() 
     driver.get(url) 
-    time.sleep(10)  # Wait for the page to load completely
+    time.sleep(5)  # Wait for the page to load completely
 
     scraped_routes = driver.find_elements(By.CSS_SELECTOR, ".route[data-route-tick]")
     routes = []
