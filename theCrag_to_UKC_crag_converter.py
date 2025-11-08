@@ -51,8 +51,8 @@ def scrape_route(url):
             description = description.split('\n')[0]  # Get only the first paragraph
         except exceptions.NoSuchElementException:
             print("No description found, skipping...")
-            
-        # Bolts also in mixed routes, look into adding this
+ 
+        bolts = None # Preventing unbound variable error
         if climb_type == "Sport" or climb_type == "Mixed trad":
             try:
                 bolts = route.find_element(By.CLASS_NAME, "bolts").text
@@ -64,13 +64,14 @@ def scrape_route(url):
         except exceptions.NoSuchElementException:
             print("No FA info found, skipping...")
  
-        try:
-            attr = route.find_element(By.CLASS_NAME, "attr")
-            pitches = attr.find_element(By.CSS_SELECTOR, ".title [title]").text
-        except exceptions.NoSuchElementException:
-            print("No pitches found, skipping...")
-        
-            
+        pitches = None # Preventing unbound variable error
+        if climb_type != "Boulder":
+            pitches = 1  # Default to 1 pitch
+            try:
+                attr = route.find_element(By.CLASS_NAME, "attr")
+                pitches = attr.find_element(By.CSS_SELECTOR, ".title [title]").text
+            except exceptions.NoSuchElementException:
+                print("No pitches found, skipping...")
         
         route_obj = route_info.Route(
             name=route_name,
