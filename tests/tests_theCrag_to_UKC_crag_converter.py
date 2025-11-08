@@ -29,12 +29,14 @@ class TestRoutesCSV(unittest.TestCase):
         self.assertEqual(test_route.fa.who, "Jack Schyvens & Daniel Butler")
         self.assertEqual(test_route.fa.when, "22 Jul 2017")
     
+    def test_get_ffa(self):
+        routes = converter.scrape_route(local_site)
+        test_route = routes[1]
+
+        self.assertEqual(test_route.fa.what, "FFA:")
+        self.assertEqual(test_route.fa.who, "This guy & That guy")
+        self.assertEqual(test_route.fa.when, "22 Jul 2017")
+
+
 if __name__ == "__main__":
     unittest.main()
-
-def get_local_test_routes():
-    driver = converter.set_up_scrape()
-    driver.get("file:///C:/Users/oisin/Coding%20Projects/theCrag_to_UKC_crag_converter/tests/test_site.html")
-    time.sleep(1)
-    routes = driver.find_elements(By.CLASS_NAME, "route")
-    return routes   
