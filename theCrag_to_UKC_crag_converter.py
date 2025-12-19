@@ -46,9 +46,18 @@ def scrape_route(url):
             print("No height found, skipping...")
 
         # Could be interesting to use chatgpt to alter the description to avoid plagerism
+        # Can currently get all <p> elements within the description div, then remove any with class "fa"
         try:
-            description = route.find_element(By.CSS_SELECTOR, "div.markdown.desc").text
-            description = description.split('\n')[0]  # Get only the first paragraph
+            description = route.find_element(By.CSS_SELECTOR, "div.markdown.desc")
+            paragraphs = description.find_elements(By.CSS_SELECTOR, "p")
+            for p in paragraphs[:]:
+                classes = (p.get_attribute("class") or "").split()
+                if "fa" in classes:
+                    paragraphs.remove(p)
+            
+            description = ""
+            for p in paragraphs:
+                description = description + p.text
         except exceptions.NoSuchElementException:
             print("No description found, skipping...")
  
