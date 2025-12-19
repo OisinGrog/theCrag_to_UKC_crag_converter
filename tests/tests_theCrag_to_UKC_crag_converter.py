@@ -37,6 +37,16 @@ class TestRoutesCSV(unittest.TestCase):
         self.assertEqual(test_route.fa.who, "This guy & That guy")
         self.assertEqual(test_route.fa.when, "22 Jul 2017")
 
+    def test_multi_desc(self):
+        routes = converter.scrape_route(local_site)
+        test_route = routes[2]
+
+        expected_desc="The aid (originally a few bolts) at the start of the second pitch was freed by Joe Friend. Start 33m right of PV at obvious right trending wide yellow crack/corner system. Marked with J." \
+        "30m (18) Stem up featured corner system that funnels into a chimney near the top. Traverse right 4m to semi-hanging belay off rap chains. Lots of long slings useful on this pitch." \
+        "60m (22) Burly, slick and spectacular. The right trending wide crack breaching the upper headwall. Climb past optional belay at 30m (dead tree + choss) and trend right across the slab to end at the chains above Blast Off. They are under a little rooflet just beneath the top of the cliff." \
+        "Reportedly you can rap from the optional tree belay back to the end of pitch one and then to the ground with a 50m rope, however this tree has died, mostly fallen over, and is no longer suitable to rap off. Instead top out and walk/rap off as per options described above."
+
+        self.assertEqual(test_route.description, expected_desc)
 
 if __name__ == "__main__":
     unittest.main()
