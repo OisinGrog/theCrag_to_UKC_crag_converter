@@ -7,6 +7,7 @@ def write_to_csv(routes_data, filename):
         writer = csv.writer(file)
         field = ['Route Name', 'Climb Type', 'Grade', 'Stars', 'Height', 'Pitches', 'Description', 'Bolts', 'FA']
 
+        # Removed bolts from header
         writer.writerow(field)  # Write the header
         
         for route in routes_data:

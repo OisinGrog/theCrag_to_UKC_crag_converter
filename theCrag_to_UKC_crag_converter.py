@@ -61,12 +61,13 @@ def scrape_route(url):
         except exceptions.NoSuchElementException:
             print("No description found, skipping...")
  
-        bolts = None # Preventing unbound variable error
-        if climb_type == "Sport" or climb_type == "Mixed trad":
-            try:
-                bolts = route.find_element(By.CLASS_NAME, "bolts").text
-            except exceptions.NoSuchElementException:
-                print("No bolts found, skipping...")
+        # Bolts not needed for UKC
+        # bolts = None # Preventing unbound variable error
+        # if climb_type == "Sport" or climb_type == "Mixed trad":
+        #     try:
+        #         bolts = route.find_element(By.CLASS_NAME, "bolts").text
+        #     except exceptions.NoSuchElementException:
+        #         print("No bolts found, skipping...")
 
         try:
             fa = get_fa(route)
@@ -82,6 +83,7 @@ def scrape_route(url):
             except exceptions.NoSuchElementException:
                 print("No pitches found, skipping...")
         
+        # Removed bolts parameter
         route_obj = route_info.Route(
             name=route_name,
             climb_type=climb_type,
@@ -90,7 +92,6 @@ def scrape_route(url):
             height=height,
             pitches=pitches,
             description=description,
-            bolts=bolts,
             fa=fa
         )
 

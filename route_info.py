@@ -1,6 +1,8 @@
 
 class Route:
-    def __init__(self, name, climb_type, grade, stars, height=None, pitches=None, description=None, bolts=None, fa=None):
+
+    # Removed bolts parameter
+    def __init__(self, name, climb_type, grade, stars, height=None, pitches=None, description=None, fa=None):
         self.name = name
         self.climb_type = climb_type
         self.grade = grade
@@ -8,7 +10,6 @@ class Route:
         self.height = height
         self.pitches = pitches
         self.description = description
-        self.bolts = bolts
         self.fa = fa
 
     def __str__(self):
