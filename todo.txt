@@ -1,7 +1,8 @@
-Need to prefix grade type infront of grade as per UKC guidelines 
 Save file as .XLS or .XLSX
+Add buttress name to csv 
 Add more unit tests
 Potentially get chatgpt to rephrase the decription to avoid plagerism 
+Should prefix 'font' infront of font boulder grades as per UKC guidelines
 
 Done:
 Add star count (it is a requirement of UKC)
