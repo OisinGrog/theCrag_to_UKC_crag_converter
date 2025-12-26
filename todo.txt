@@ -1,3 +1,5 @@
+Need to prefix grade type infront of grade as per UKC guidelines 
+Save file as .XLS or .XLSX
 Add more unit tests
 Potentially get chatgpt to rephrase the decription to avoid plagerism 
 
