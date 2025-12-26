@@ -2,7 +2,8 @@
 class Route:
 
     # Removed bolts parameter
-    def __init__(self, name, climb_type, grade, stars, height=None, pitches=None, description=None, fa=None):
+    def __init__(self, sector, name, climb_type, grade, stars, height=None, pitches=None, description=None, fa=None):
+        self.sector = sector
         self.name = name
         self.climb_type = climb_type
         self.grade = grade

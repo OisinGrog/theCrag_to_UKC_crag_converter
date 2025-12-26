@@ -9,6 +9,8 @@ def write_to_csv(routes_data, filename):
 
         # Removed bolts from header
         writer.writerow(field)  # Write the header
+        writer.writerow([routes_data[0].sector]) # Write sector name as first row
+
         for route in routes_data:
             writer.writerow([
                 route.name,
@@ -20,4 +22,3 @@ def write_to_csv(routes_data, filename):
                 route.pitches,
                 route.climb_type
             ])
-    

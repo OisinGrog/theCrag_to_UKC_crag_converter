@@ -13,12 +13,14 @@ def scrape_route(url):
     driver.get(url) 
     time.sleep(5)  # Wait for the page to load completely
 
-    scraped_routes = driver.find_elements(By.CSS_SELECTOR, ".route[data-route-tick]")
     routes = []
+    scraped_routes = driver.find_elements(By.CSS_SELECTOR, ".route[data-route-tick]")
     
     for route in scraped_routes:
         # Can be done using a csvreader but I'm not sure what method is the most efficient
         # The data-route-tick attribute contains a CSV string with a lot of good information including the child code of the route
+
+        sector_name = driver.find_element(By.CLASS_NAME, "heading__t").text
 
         try:
             route_name = route.find_element(By.CLASS_NAME, "primary-node-name").text
@@ -85,6 +87,7 @@ def scrape_route(url):
         
         # Removed bolts parameter
         route_obj = route_info.Route(
+            sector=sector_name,
             name=route_name,
             climb_type=climb_type,
             grade=grade,
