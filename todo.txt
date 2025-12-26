@@ -1,10 +1,10 @@
-Save file as .XLS or .XLSX
-Add buttress name to csv 
 Add more unit tests
 Potentially get chatgpt to rephrase the decription to avoid plagerism 
 Should prefix 'font' infront of font boulder grades as per UKC guidelines
 
 Done:
+Save file as .XLS or .XLSX
+Add buttress name to csv 
 Add star count (it is a requirement of UKC)
 Bolts also in mixed trad routes, handle this
 Handle FFA vs FA stuff, FA = priority 1, FFA = priority 2
